@@ -34,13 +34,13 @@
 - **私有网络专用域名列表 private.txt**：
   - [https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt](https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt)
   - [https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt](https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/private.txt)
-- **Apple 域名列表 apple.txt**：
+- **Apple 在中国大陆可直连的域名列表 apple.txt**：
   - [https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt](https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/apple.txt)
   - [https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt](https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/apple.txt)
 - **iCloud 域名列表 icloud.txt**：
   - [https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/icloud.txt](https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/icloud.txt)
   - [https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt](https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/icloud.txt)
-- **Google 域名列表 google.txt**：
+- **[慎用]Google 在中国大陆可直连的域名列表 google.txt**：
   - [https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/google.txt](https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/google.txt)
   - [https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt](https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/google.txt)
 - **GFWList 域名列表 gfw.txt**：
@@ -58,9 +58,12 @@
 - **局域网 IP 及保留 IP 地址列表 lancidr.txt**：
   - [https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt](https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt)
   - [https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt](https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt)
-- **中国大陆 IPv4 地址列表 cncidr.txt**：
+- **中国大陆 IP 地址列表 cncidr.txt**：
   - [https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt](https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt)
   - [https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt](https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/cncidr.txt)
+- **需要直连的常见软件列表 applications.txt**：
+  - [https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt](https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/applications.txt)
+  - [https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt](https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt)
 
 ### 使用方式
 
@@ -162,6 +165,13 @@ rule-providers:
     url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/lancidr.txt"
     path: ./ruleset/lancidr.yaml
     interval: 86400
+
+  applications:
+    type: http
+    behavior: classical
+    url: "https://cdn.jsdelivr.net/gh/Loyalsoldier/clash-rules@release/applications.txt"
+    path: ./ruleset/applications.yaml
+    interval: 86400
 ```
 
 #### 白名单模式 Rules 配置方式（推荐）
@@ -173,50 +183,7 @@ rule-providers:
 
 ```yaml
 rules:
-  - PROCESS-NAME,v2ray,DIRECT
-  - PROCESS-NAME,xray,DIRECT
-  - PROCESS-NAME,naive,DIRECT
-  - PROCESS-NAME,trojan,DIRECT
-  - PROCESS-NAME,trojan-go,DIRECT
-  - PROCESS-NAME,ss-local,DIRECT
-  - PROCESS-NAME,privoxy,DIRECT
-  - PROCESS-NAME,leaf,DIRECT
-  - PROCESS-NAME,v2ray.exe,DIRECT
-  - PROCESS-NAME,xray.exe,DIRECT
-  - PROCESS-NAME,naive.exe,DIRECT
-  - PROCESS-NAME,trojan.exe,DIRECT
-  - PROCESS-NAME,trojan-go.exe,DIRECT
-  - PROCESS-NAME,ss-local.exe,DIRECT
-  - PROCESS-NAME,privoxy.exe,DIRECT
-  - PROCESS-NAME,leaf.exe,DIRECT
-  - PROCESS-NAME,Surge,DIRECT
-  - PROCESS-NAME,Surge 2,DIRECT
-  - PROCESS-NAME,Surge 3,DIRECT
-  - PROCESS-NAME,Surge 4,DIRECT
-  - PROCESS-NAME,Surge%202,DIRECT
-  - PROCESS-NAME,Surge%203,DIRECT
-  - PROCESS-NAME,Surge%204,DIRECT
-  - PROCESS-NAME,Thunder,DIRECT
-  - PROCESS-NAME,DownloadService,DIRECT
-  - PROCESS-NAME,qBittorrent,DIRECT
-  - PROCESS-NAME,Transmission,DIRECT
-  - PROCESS-NAME,fdm,DIRECT
-  - PROCESS-NAME,aria2c,DIRECT
-  - PROCESS-NAME,Folx,DIRECT
-  - PROCESS-NAME,NetTransport,DIRECT
-  - PROCESS-NAME,uTorrent,DIRECT
-  - PROCESS-NAME,WebTorrent,DIRECT
-  - PROCESS-NAME,aria2c.exe,DIRECT
-  - PROCESS-NAME,BitComet.exe,DIRECT
-  - PROCESS-NAME,fdm.exe,DIRECT
-  - PROCESS-NAME,NetTransport.exe,DIRECT
-  - PROCESS-NAME,qbittorrent.exe,DIRECT
-  - PROCESS-NAME,Thunder.exe,DIRECT
-  - PROCESS-NAME,ThunderVIP.exe,DIRECT
-  - PROCESS-NAME,transmission-daemon.exe,DIRECT
-  - PROCESS-NAME,transmission-qt.exe,DIRECT
-  - PROCESS-NAME,uTorrent.exe,DIRECT
-  - PROCESS-NAME,WebTorrent.exe,DIRECT
+  - RULE-SET,applications,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - RULE-SET,private,DIRECT
@@ -226,6 +193,8 @@ rules:
   - RULE-SET,google,DIRECT
   - RULE-SET,proxy,PROXY
   - RULE-SET,direct,DIRECT
+  - RULE-SET,lancidr,DIRECT
+  - RULE-SET,cncidr,DIRECT
   - RULE-SET,telegramcidr,PROXY
   - GEOIP,,DIRECT
   - GEOIP,CN,DIRECT
@@ -239,50 +208,7 @@ rules:
 
 ```yaml
 rules:
-  - PROCESS-NAME,v2ray,DIRECT
-  - PROCESS-NAME,xray,DIRECT
-  - PROCESS-NAME,naive,DIRECT
-  - PROCESS-NAME,trojan,DIRECT
-  - PROCESS-NAME,trojan-go,DIRECT
-  - PROCESS-NAME,ss-local,DIRECT
-  - PROCESS-NAME,privoxy,DIRECT
-  - PROCESS-NAME,leaf,DIRECT
-  - PROCESS-NAME,v2ray.exe,DIRECT
-  - PROCESS-NAME,xray.exe,DIRECT
-  - PROCESS-NAME,naive.exe,DIRECT
-  - PROCESS-NAME,trojan.exe,DIRECT
-  - PROCESS-NAME,trojan-go.exe,DIRECT
-  - PROCESS-NAME,ss-local.exe,DIRECT
-  - PROCESS-NAME,privoxy.exe,DIRECT
-  - PROCESS-NAME,leaf.exe,DIRECT
-  - PROCESS-NAME,Surge,DIRECT
-  - PROCESS-NAME,Surge 2,DIRECT
-  - PROCESS-NAME,Surge 3,DIRECT
-  - PROCESS-NAME,Surge 4,DIRECT
-  - PROCESS-NAME,Surge%202,DIRECT
-  - PROCESS-NAME,Surge%203,DIRECT
-  - PROCESS-NAME,Surge%204,DIRECT
-  - PROCESS-NAME,Thunder,DIRECT
-  - PROCESS-NAME,DownloadService,DIRECT
-  - PROCESS-NAME,qBittorrent,DIRECT
-  - PROCESS-NAME,Transmission,DIRECT
-  - PROCESS-NAME,fdm,DIRECT
-  - PROCESS-NAME,aria2c,DIRECT
-  - PROCESS-NAME,Folx,DIRECT
-  - PROCESS-NAME,NetTransport,DIRECT
-  - PROCESS-NAME,uTorrent,DIRECT
-  - PROCESS-NAME,WebTorrent,DIRECT
-  - PROCESS-NAME,aria2c.exe,DIRECT
-  - PROCESS-NAME,BitComet.exe,DIRECT
-  - PROCESS-NAME,fdm.exe,DIRECT
-  - PROCESS-NAME,NetTransport.exe,DIRECT
-  - PROCESS-NAME,qbittorrent.exe,DIRECT
-  - PROCESS-NAME,Thunder.exe,DIRECT
-  - PROCESS-NAME,ThunderVIP.exe,DIRECT
-  - PROCESS-NAME,transmission-daemon.exe,DIRECT
-  - PROCESS-NAME,transmission-qt.exe,DIRECT
-  - PROCESS-NAME,uTorrent.exe,DIRECT
-  - PROCESS-NAME,WebTorrent.exe,DIRECT
+  - RULE-SET,applications,DIRECT
   - DOMAIN,clash.razord.top,DIRECT
   - DOMAIN,yacd.haishan.me,DIRECT
   - RULE-SET,private,DIRECT
@@ -294,8 +220,14 @@ rules:
   - MATCH,DIRECT
 ```
 
+## 激赏 | Donation
+
+- **比特币（BTC）bech32 地址**：bc1qfe4nxcanet4w4ph8pf6qqyf263y68vw26nv9j9
+- **比特币（BTC）地址**：3PRyneb1D7jFFBakAaJiCRSsxsXAtMr7LN
+
 ## 致谢
 
+- [@Loyalsoldier/geoip](https://github.com/Loyalsoldier/geoip)
 - [@Loyalsoldier/v2ray-rules-dat](https://github.com/Loyalsoldier/v2ray-rules-dat)
 - [@Loyalsoldier/cn-blocked-domain](https://github.com/Loyalsoldier/cn-blocked-domain)
 - [@gfwlist/gfwlist](https://github.com/gfwlist/gfwlist)
